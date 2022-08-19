@@ -36,7 +36,7 @@ function CreateTodo({ todo, onChange, onCreate }: ITodo) {
   return (
     <Container>
       <TodoForm onSubmit={onCreate}>
-        <InputWrapper style={{ width: "80%" }}>
+        <InputWrapper style={{ width: "80%", margin: "0px 16px" }}>
           <Input type="text" value={todo} onChange={onChange} />
         </InputWrapper>
         <ButtonWrapper style={{ height: "100px", marginTop: "0" }}>
