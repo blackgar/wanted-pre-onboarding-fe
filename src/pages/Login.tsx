@@ -153,7 +153,7 @@ function Login() {
   // 추가로 validation 적용하기
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-    const emailRegex = /@/;
+    const emailRegex = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     if (emailRegex.test(e.target.value)) {
       setIsEmailValid(true);
     } else {
@@ -163,7 +163,9 @@ function Login() {
 
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    if (e.target.value.length >= 8) {
+    const passwordRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,}$/;
+    if (passwordRegex.test(e.target.value)) {
       setIsPasswordValid(true);
     } else {
       setIsPasswordValid(false);

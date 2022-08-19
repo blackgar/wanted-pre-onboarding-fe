@@ -146,7 +146,7 @@ function Signup({ open, onClose }: IModal) {
   // 추가로 validation 적용하기
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-    const emailRegex = /@/;
+    const emailRegex = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     if (emailRegex.test(e.target.value)) {
       setIsEmailValid(true);
     } else {
@@ -156,7 +156,9 @@ function Signup({ open, onClose }: IModal) {
 
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    if (e.target.value.length >= 8) {
+    const passwordRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,}$/;
+    if (passwordRegex.test(e.target.value)) {
       setIsPasswordValid(true);
     } else {
       setIsPasswordValid(false);
@@ -196,7 +198,10 @@ function Signup({ open, onClose }: IModal) {
               <AlertBox>
                 {password ? (
                   !isPasswordValid && (
-                    <Alert>비밀번호는 8자리 이상 입력해주세요.</Alert>
+                    <Alert>
+                      비밀번호는 최소 8자, 문자와 숫자 그리고 특수 문자가 최소한
+                      하나씩 있어야 합니다.
+                    </Alert>
                   )
                 ) : (
                   <Alert>비밀번호를 입력해주세요.</Alert>
