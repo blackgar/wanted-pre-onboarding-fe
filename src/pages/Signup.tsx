@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import Input from "../components/Input";
 import {
   Button,
+  ButtonWrapper,
   Form,
   FormWrapper,
   Img,
@@ -29,9 +30,24 @@ const SingupBox = styled.div`
   padding: 16px 16px;
   position: relative;
 `;
+const AlertBox = styled.div`
+  margin-bottom: 32px;
+  margin-top: 0px;
+`;
+const Alert = styled.span`
+  display: inline-block;
+  position: absolute;
+  font-size: 14px;
+  color: red;
+  margin-top: 2px;
+`;
 
-const LogoImgWrapper = styled(ImgWrapper)`
+const LogoImgWrapper = styled.div`
+  position: absolute;
   left: 30%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
 `;
 
 const LogoImg = styled.img.attrs({
@@ -53,9 +69,10 @@ function Signup({ open, onClose }: IModal) {
       right: "auto",
       bottom: "auto",
       padding: "32px",
+      paddingBottom: "0px",
       transform: "translate(-50%, -50%)",
       width: "400px",
-      height: "550px",
+      height: "480px",
       backgroundColor: "#ffffff",
       borderRadius: "10px",
       color: "#424242",
@@ -106,7 +123,7 @@ function Signup({ open, onClose }: IModal) {
               Swal.fire(
                 "가입실패",
                 `${res.message} 다시 회원가입해주세요.`,
-                "success"
+                "error"
               );
             } else {
               Swal.fire(
@@ -161,6 +178,13 @@ function Signup({ open, onClose }: IModal) {
             <InputWrapper>
               <InputTitle>이메일</InputTitle>
               <Input type="text" value={email} onChange={onChangeEmail} />
+              <AlertBox>
+                {email ? (
+                  !isEmailValid && <Alert>이메일 양식을 지켜주세요.</Alert>
+                ) : (
+                  <Alert>이메일을 입력해주세요.</Alert>
+                )}
+              </AlertBox>
             </InputWrapper>
             <InputWrapper>
               <InputTitle>비밀번호</InputTitle>
@@ -169,8 +193,19 @@ function Signup({ open, onClose }: IModal) {
                 value={password}
                 onChange={onChangePassword}
               />
+              <AlertBox>
+                {password ? (
+                  !isPasswordValid && (
+                    <Alert>비밀번호는 8자리 이상 입력해주세요.</Alert>
+                  )
+                ) : (
+                  <Alert>비밀번호를 입력해주세요.</Alert>
+                )}
+              </AlertBox>
             </InputWrapper>
-            {isPasswordValid && isEmailValid && <Button>Singup</Button>}
+            <ButtonWrapper>
+              {isPasswordValid && isEmailValid && <Button>Singup</Button>}
+            </ButtonWrapper>
           </Form>
         </FormWrapper>
         <LogoImgWrapper>

@@ -27,7 +27,7 @@ export const LoginBox = styled.div`
 `;
 export const TitleWrapper = styled.div`
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 `;
 export const Title = styled.div`
   font-size: 24px;
@@ -44,11 +44,14 @@ export const Form = styled.form`
 export const InputWrapper = styled.div``;
 export const InputTitle = styled.div`
   font-size: 16px;
+  font-weight: bold;
   margin-bottom: 8px;
+  margin-top: 16px;
 `;
 const SingupWrapper = styled.div`
   text-align: center;
   height: 40px;
+  margin-top: 16px;
 `;
 const SingupSentence = styled.span``;
 const Linkto = styled(Link)`
@@ -70,6 +73,7 @@ export const Button = styled.button`
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 16px;
+  margin-top: 8px;
 `;
 export const ImgWrapper = styled.div`
   position: absolute;
@@ -182,22 +186,23 @@ function Login() {
                 onChange={onChangePassword}
               />
             </InputWrapper>
+            <ButtonWrapper>
+              {isPasswordValid && isEmailValid && <Button>Login</Button>}
+              {isEmailValid || (
+                <>
+                  <SingupWrapper>
+                    <SingupSentence>만약 계정이 없으시다면 </SingupSentence>
+                    <Linkto to="/" onClick={onClick}>
+                      회원가입
+                    </Linkto>
+                    <SingupSentence> 해주세요</SingupSentence>
+                  </SingupWrapper>
+                </>
+              )}
+            </ButtonWrapper>
           </Form>
         </FormWrapper>
-        <ButtonWrapper>
-          {isPasswordValid && isEmailValid && <Button>Login</Button>}
-          {isEmailValid || (
-            <>
-              <SingupWrapper>
-                <SingupSentence>만약 계정이 없으시다면 </SingupSentence>
-                <Linkto to="/" onClick={onClick}>
-                  회원가입
-                </Linkto>
-                <SingupSentence> 해주세요</SingupSentence>
-              </SingupWrapper>
-            </>
-          )}
-        </ButtonWrapper>
+
         {/* <button>Singup</button> */}
         {openModal && <Signup open={openModal} onClose={closeModal} />}
         <ImgWrapper>
