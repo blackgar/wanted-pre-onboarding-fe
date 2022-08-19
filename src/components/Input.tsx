@@ -20,13 +20,12 @@ const StyledInput = styled.input`
   font-size: 14px;
 `;
 
-const Input: React.FC<Props> = ({ type, value = "", onChange }) => {
+const Input: React.FC<Props> = ({ type, value, onChange }) => {
   const [inputValue, setInputValue] = useState<InputValue>(value);
 
   const changeEvent = (ev: InputChangeEvent) => {
     setInputValue(ev!.target.value);
     onChange && onChange(ev);
-    // onChange
   };
 
   return <StyledInput type={type} value={value} onChange={changeEvent} />;

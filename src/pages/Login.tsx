@@ -48,6 +48,7 @@ export const InputTitle = styled.div`
   margin-bottom: 8px;
   margin-top: 16px;
 `;
+
 const SingupWrapper = styled.div`
   text-align: center;
   height: 40px;
@@ -60,6 +61,7 @@ const Linkto = styled(Link)`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 16px;
   height: 150px;
 `;
@@ -74,6 +76,7 @@ export const Button = styled.button`
   font-weight: bold;
   margin-bottom: 16px;
   margin-top: 8px;
+  cursor: pointer;
 `;
 export const ImgWrapper = styled.div`
   position: absolute;
