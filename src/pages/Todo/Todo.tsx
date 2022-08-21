@@ -21,14 +21,13 @@ const Container = styled.div`
 `;
 const TodoBox = styled(LoginBox)`
   width: 500px;
-  height: 700px;
+  height: 600px;
 `;
 
 function Todo() {
   const token = localStorage.getItem("accessToken");
   const [todo, setTodo] = useState("");
   const [todoList, setTodoList] = useState([]);
-
   const getTodos = () => {
     fetch(`${process.env.REACT_APP_BASE_URL}todos`, {
       method: "GET",
